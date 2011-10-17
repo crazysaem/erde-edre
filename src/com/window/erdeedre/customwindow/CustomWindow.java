@@ -12,7 +12,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
-import com.window.audio.AudioHelper;
+import com.window.erdeedre.audio.AudioHelper;
 import com.window.erdeedre.customcomponents.ImageButtonLabel;
 import com.window.erdeedre.customcomponents.ImageButtonLabelCallBack;
 import com.window.erdeedre.customcomponents.ImageLabel;
