@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import com.window.erdeedre.customwindow.CustomWindow;
+import com.window.erdeedre.skins.ButtonValues;
 
 /**
  * This Function simulates a Button through an Icon placed on a Label
@@ -26,6 +27,10 @@ public class ImageButtonLabel implements MouseListener, MouseMotionListener {
 	private int x, y;
 	private boolean mouseDown=false;
 	private CustomWindow parent=null;
+	
+	public ImageButtonLabel(CustomWindow parent, ButtonValues values) {
+		this(parent, values.path, values.pathmo, values.pathoc, values.x, values.y);
+	}
 	
 	public ImageButtonLabel(CustomWindow parent, String imagePath, String imageMouseOverPath, String imageMousePressedPath) {	
 	     this(parent, imagePath, imageMouseOverPath, imageMousePressedPath, 0, 0);

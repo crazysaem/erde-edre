@@ -24,7 +24,22 @@ public class SkinChooser {
 			//Set Values
 			mainWindow.getWindow().setStartStopRecordValues( new ButtonValues("src/resources/images/style01/speak.png",
 															"src/resources/images/style01/speakmo.png",
-															"src/resources/images/style01/speakoc.png",0,50));
+															"src/resources/images/style01/speakoc.png",20,100));
+			mainWindow.getWindow().setplayRecordValues( new ButtonValues("src/resources/images/style01/play.png",
+														"src/resources/images/style01/playmo.png",
+														"src/resources/images/style01/playoc.png",180,60));
+			mainWindow.getWindow().setminimizeValues( new ButtonValues("src/resources/images/style01/minus.png",
+													"src/resources/images/style01/minusmo.png",
+													"src/resources/images/style01/minusoc.png",640,110));
+			mainWindow.getWindow().settextValues( new ButtonValues("src/resources/images/style01/text.png",
+													"src/resources/images/style01/textmo.png",
+													"src/resources/images/style01/textoc.png",260,80));
+			mainWindow.getWindow().setgesturesValues( new ButtonValues("src/resources/images/style01/gesten.png",
+													"src/resources/images/style01/gestenmo.png",
+													"src/resources/images/style01/gestenoc.png",165,225));
+			mainWindow.getWindow().setexitValues( new ButtonValues("src/resources/images/style01/x.png",
+												"src/resources/images/style01/xmo.png",
+												"src/resources/images/style01/xoc.png",660,150));
 			
 			//Init Main Window
 			mainWindow.getWindow().initMainWindow();

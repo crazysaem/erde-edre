@@ -1,5 +1,6 @@
 package com.window.erdeedre.customwindow;
 
+import java.awt.Frame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -29,8 +30,8 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 	private CustomComponentAdapter customComponentAdapter;
 	private boolean mousedown=false, recording=false, isReadyToPlay=false, isMain=false;
 	private int mousex1, mousey1;
-	private ImageButtonLabel startStopRecord, stopRecord, playRecord, exit;
-	private ButtonValues startStopRecordValues;
+	private ImageButtonLabel startStopRecord, playRecord, text, gestures, minimze, exit;
+	private ButtonValues startStopRecordValues, playRecordValues, textValues, gesturesValues, minimizeValues, exitValues;
 	private ImageLabel background;
 	private AudioHelper audioHelper;	
 	
@@ -69,39 +70,48 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 		this.startStopRecordValues = startStopRecordValues;
 	}
 	
+	public void setplayRecordValues(ButtonValues playRecordValues) {
+		this.playRecordValues = playRecordValues;
+	}
+	
+	public void settextValues(ButtonValues textValues) {
+		this.textValues = textValues;
+	}
+	
+	public void setgesturesValues(ButtonValues gesturesValues) {
+		this.gesturesValues = gesturesValues;
+	}
+	
+	public void setminimizeValues(ButtonValues minimizeValues) {
+		this.minimizeValues = minimizeValues;
+	}
+	
+	public void setexitValues(ButtonValues exitValues) {
+		this.exitValues = exitValues;
+	}
+	
 	public void initMainWindow() {
 		isMain=true;
 		audioHelper = new AudioHelper();    
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        /*
-        startStopRecord = new ImageButtonLabel(this,
-        							 "src/resources/images/buttons/button_speak_up.png",
-        							 "src/resources/images/buttons/button_speak_up_highlight.png",
-        							 "src/resources/images/buttons/button_speak_down.png");*/
-		startStopRecord = new ImageButtonLabel(this,startStopRecordValues.path,startStopRecordValues.pathmo,startStopRecordValues.pathoc);
-        this.add(startStopRecord.getLabel());
-        startStopRecord.setPos(startStopRecordValues.x, startStopRecordValues.y);
-        
-        stopRecord = new ImageButtonLabel(this,
-				 "src/resources/images/buttons/button_speak_up.png",
-				 "src/resources/images/buttons/button_speak_up_highlight.png",
-				 "src/resources/images/buttons/button_speak_down.png");
-		this.add(stopRecord.getLabel());
-		stopRecord.setPos(140, 50);
-
-		playRecord = new ImageButtonLabel(this,
-				 "src/resources/images/buttons/button_speak_up.png",
-				 "src/resources/images/buttons/button_speak_up_highlight.png",
-				 "src/resources/images/buttons/button_speak_down.png");
-		this.add(playRecord.getLabel());
-		playRecord.setPos(280, 50);
 		
-		exit = new ImageButtonLabel(this,
-				 "src/resources/images/buttons/button_speak_up.png",
-				 "src/resources/images/buttons/button_speak_up_highlight.png",
-				 "src/resources/images/buttons/button_speak_down.png");
+		startStopRecord = new ImageButtonLabel(this, startStopRecordValues);
+		this.add(startStopRecord.getLabel());
+		
+		playRecord = new ImageButtonLabel(this, playRecordValues);
+		this.add(playRecord.getLabel());
+		
+		minimze = new ImageButtonLabel(this, minimizeValues);
+		this.add(minimze.getLabel());
+		
+		text = new ImageButtonLabel(this, textValues);
+		this.add(text.getLabel());
+		
+		gestures = new ImageButtonLabel(this, gesturesValues);
+		this.add(gestures.getLabel());
+		
+		exit = new ImageButtonLabel(this, exitValues);
 		this.add(exit.getLabel());
-		exit.setPos(210, 180);
 	}
 	
 	public void SetBackgroundImage(String imagePath) {
@@ -150,22 +160,30 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 	}
 
 	@Override
-	public void ButtonCallBack(ImageButtonLabel pressedButton) {		
+	public void ButtonCallBack(ImageButtonLabel pressedButton) {	
+		
 		if((pressedButton==startStopRecord) && (recording==false)) {
-			System.out.println("Button 1 Pressed");
+			//System.out.println("Button 1 Pressed");
 			audioHelper.startCaptureAudio();
 			recording=true;
+			return;
 		}
-		if((pressedButton==stopRecord) && (recording==true)) {
-			System.out.println("Button 2 Pressed");	
+		if((pressedButton==startStopRecord) && (recording==true)) {
+			//System.out.println("Button 2 Pressed");	
 			audioHelper.stopCaptureAudio();
 			recording=false;
 			isReadyToPlay=true;
+			return;
 		}
 		if((pressedButton==playRecord) && (audioHelper.isPlayingAudio()==false) && (isReadyToPlay)) {
 			System.out.println("Button 3 Pressed");
 			//audioHelper.playReverseAudio();
 			audioHelper.playAudio();
+			return;
+		}
+		if(pressedButton==minimze) {
+			this.setState(Frame.ICONIFIED);
+			return;
 		}
 		if(pressedButton==exit) {
 			System.exit(0);
