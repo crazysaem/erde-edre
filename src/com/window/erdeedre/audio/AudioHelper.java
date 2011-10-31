@@ -15,7 +15,7 @@ import javax.sound.sampled.TargetDataLine;
 
 /**
  * Audio Helper Class
- * @author (C) Oracle/SUN; modified by Sebastian Böhm, Samuel Schneider
+ * @author (C) Oracle/SUN; modified by Sebastian Bï¿½hm, Samuel Schneider
  *
  */
 public class AudioHelper {
@@ -25,6 +25,7 @@ public class AudioHelper {
 	private TargetDataLine line;
 	private byte[][] frames;
 	private int frameSize;
+	//Thread captureThread=null;
 
 	public AudioHelper() {
 		format = getFormat();
@@ -40,7 +41,9 @@ public class AudioHelper {
 	}
 
 	public void startCaptureAudio() {
-		stopCaptureAudio();		
+		stopCaptureAudio();	
+		
+		//if(captureThread!=null) captureThread.kill();
 			
 		Runnable runner = new Runnable() {
 			int bufferSize = (int)format.getSampleRate() * format.getFrameSize();
@@ -65,6 +68,8 @@ public class AudioHelper {
 				}
 			}
 		};
+		//new
+		//captureThread = new Thread(runner);
 		Thread captureThread = new Thread(runner);
 		captureThread.start();		
 	}
