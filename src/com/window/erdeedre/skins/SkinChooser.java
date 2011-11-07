@@ -45,9 +45,34 @@ public class SkinChooser {
 			mainWindow.getWindow().initMainWindow();
 			//Set Window Background
 			mainWindow.getWindow().SetBackgroundImage("src/resources/images/style01/back.png");		
+		break;
+		case 2:
+			//Create Window, Set Title, Set Shape
+			mainWindow = new WindowRunnable("Erde-Edre Übersetzer", "src/resources/images/style02/shape2.png");
 			
-			
-	    	
+			//Set Values
+			mainWindow.getWindow().setStartStopRecordValues( new ButtonValues("src/resources/images/style02/speaksmall.png",
+															"src/resources/images/style02/speaksmallmo.png",
+															"src/resources/images/style02/speaksmalloc.png",40,160));
+			mainWindow.getWindow().setplayRecordValues( new ButtonValues("src/resources/images/style01/play.png",
+														"src/resources/images/style01/playmo.png",
+														"src/resources/images/style01/playoc.png",125,90));
+			mainWindow.getWindow().setminimizeValues( new ButtonValues("src/resources/images/style01/minus.png",
+													"src/resources/images/style01/minusmo.png",
+													"src/resources/images/style01/minusoc.png",640,110));
+			mainWindow.getWindow().settextValues( new ButtonValues("src/resources/images/style01/text.png",
+													"src/resources/images/style01/textmo.png",
+													"src/resources/images/style01/textoc.png",390,75));
+			mainWindow.getWindow().setgesturesValues( new ButtonValues("src/resources/images/style01/gesten.png",
+													"src/resources/images/style01/gestenmo.png",
+													"src/resources/images/style01/gestenoc.png",240,15));
+			mainWindow.getWindow().setexitValues( new ButtonValues("src/resources/images/style01/x.png",
+												"src/resources/images/style01/xmo.png",
+												"src/resources/images/style01/xoc.png",660,150));
+			//Init Main Window
+			mainWindow.getWindow().initMainWindow();
+			//Set Window Background
+			mainWindow.getWindow().SetBackgroundImage("src/resources/images/style02/back.png");	
 		break;
 		}
 		if(showSplashScreen) {

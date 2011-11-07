@@ -11,6 +11,6 @@ import com.window.erdeedre.skins.SkinChooser;
 public class _main {
 	
 	public static void main(String[] args) {
-		new SkinChooser(1, true);
+		new SkinChooser(2, true);
     }
 }
