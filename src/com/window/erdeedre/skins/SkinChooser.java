@@ -59,7 +59,7 @@ public class SkinChooser {
 														"src/resources/images/style01/playoc.png",125,90));
 			mainWindow.getWindow().setminimizeValues( new ButtonValues("src/resources/images/style01/minus.png",
 													"src/resources/images/style01/minusmo.png",
-													"src/resources/images/style01/minusoc.png",640,110));
+													"src/resources/images/style01/minusoc.png",548,215));
 			mainWindow.getWindow().settextValues( new ButtonValues("src/resources/images/style01/text.png",
 													"src/resources/images/style01/textmo.png",
 													"src/resources/images/style01/textoc.png",390,75));
@@ -68,7 +68,7 @@ public class SkinChooser {
 													"src/resources/images/style01/gestenoc.png",240,15));
 			mainWindow.getWindow().setexitValues( new ButtonValues("src/resources/images/style01/x.png",
 												"src/resources/images/style01/xmo.png",
-												"src/resources/images/style01/xoc.png",660,150));
+												"src/resources/images/style01/xoc.png",555,340));
 			//Init Main Window
 			mainWindow.getWindow().initMainWindow();
 			//Set Window Background
