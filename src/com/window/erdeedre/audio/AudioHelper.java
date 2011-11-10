@@ -77,7 +77,9 @@ public class AudioHelper {
 	public void stopCaptureAudio() {
 		running = false;
 	}
-
+	public void releaseAudio(){
+		line.close();
+	}
 	public void playAudio(float speed) {
 		isPlayingAudio=true;
 		try {
