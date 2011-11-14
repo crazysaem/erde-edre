@@ -31,13 +31,14 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 	private CustomComponentAdapter customComponentAdapter;
 	private boolean mousedown=false, recording=false, isReadyToPlay=false, isMain=false;
 	private int mousex1, mousey1;
-	private ImageButtonLabel startStopRecord, playRecord, skin, gestures, minimze, exit;
-	private ButtonValues startStopRecordValues, playRecordValues, skinValues, gesturesValues, minimizeValues, exitValues;
+	private ImageButtonLabel startStopRecord, playRecord, skin, gestures, minimze, exit,text;
+	private ButtonValues startStopRecordValues, playRecordValues, skinValues, gesturesValues, minimizeValues, exitValues, textValues;
 	private ImageLabel background;
 	private AudioHelper audioHelper;	
-	
-	MenuPanel menu;
-	
+
+	MenuPanel gesturemenu;
+	MenuPanel textmenu;
+
 	public CustomWindow(String title, String imagePath) {
 		//Define Window Title
         super(title);
@@ -68,63 +69,75 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
         this.addMouseMotionListener(this);   
         //this.addWindowStateListener(this);
     }
-	
+
 	public void setStartStopRecordValues(ButtonValues startStopRecordValues) {
 		this.startStopRecordValues = startStopRecordValues;
 	}
-	
+
 	public void setplayRecordValues(ButtonValues playRecordValues) {
 		this.playRecordValues = playRecordValues;
 	}
-	
+
 	public void setskinValues(ButtonValues skinValues) {
 		this.skinValues = skinValues;
 	}
-	
+
 	public void setgesturesValues(ButtonValues gesturesValues) {
 		this.gesturesValues = gesturesValues;
 	}
-	
+
 	public void setminimizeValues(ButtonValues minimizeValues) {
 		this.minimizeValues = minimizeValues;
 	}
-	
+
 	public void setexitValues(ButtonValues exitValues) {
 		this.exitValues = exitValues;
 	}
 	
+	public void settextValues(ButtonValues textValues){
+		this.textValues = textValues;
+	}
+
 	public void initMainWindow() {
 		isMain=true;
 		audioHelper = new AudioHelper();    
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		startStopRecord = new ImageButtonLabel(this, startStopRecordValues);
 		this.add(startStopRecord.getLabel());
-		
+
 		playRecord = new ImageButtonLabel(this, playRecordValues);
 		this.add(playRecord.getLabel());
-		
+
 		minimze = new ImageButtonLabel(this, minimizeValues);
 		this.add(minimze.getLabel());
-		
+
 		skin = new ImageButtonLabel(this, skinValues);
 		this.add(skin.getLabel());
-		
+
 		gestures = new ImageButtonLabel(this, gesturesValues);
 		this.add(gestures.getLabel());
+
+		text = new ImageButtonLabel(this, textValues);
+		this.add(text.getLabel());
 		
 		exit = new ImageButtonLabel(this, exitValues);
 		this.add(exit.getLabel());
+
+		gesturemenu = new MenuPanel(0);
+		this.add(gesturemenu);
 		
-		menu = new MenuPanel();
-		this.add(menu);
-		
+		textmenu =  new MenuPanel(1);
+		this.add(textmenu);
+
 	}
 	public void setMenu(int x,int y,int sizex,int sizey){
-		menu.setBounds(x,y,sizex,sizey);
-		menu.setVisible(false);
+		gesturemenu.setBounds(x,y,sizex,sizey);
+		gesturemenu.setVisible(false);
+		textmenu.setBounds(x,y,sizex,sizey);
+		textmenu.setVisible(false);
 	}
-	
+
 	public void SetBackgroundImage(String imagePath) {
 		background = new ImageLabel(imagePath);
 		add(background.getLabel());
@@ -138,12 +151,12 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-	
+
 	}
 
 	@Override
@@ -167,12 +180,12 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
-		
+
 	}
 
 	@Override
 	public void ButtonCallBack(ImageButtonLabel pressedButton) {	
-		
+
 		if((pressedButton==startStopRecord) && (recording==false)) {
 			//System.out.println("Button 1 Pressed");
 			audioHelper.startCaptureAudio();
@@ -195,29 +208,40 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 			new SkinChooser();
 			return;
 			}
-		
+
 		if(pressedButton==gestures){
 			System.out.println("GestureButton Pressed");
 			//release old Screen and Audio ressources
-			if(menu.isVisible()){
-				menu.setVisible(false);
+			if(gesturemenu.isVisible()){
+				gesturemenu.setVisible(false);
 			}
 			else{
-				menu.setVisible(true);
+				gesturemenu.setVisible(true);
+				textmenu.setVisible(false);
 			}
 			return;
 			}
-		
+
 		if((pressedButton==playRecord) && (audioHelper.isPlayingAudio()==false) && (isReadyToPlay)) {
 			System.out.println("Button 3 Pressed");
 			audioHelper.playReverseAudio();
 			//audioHelper.playAudio();
 			return;
 		}
-		if(pressedButton==minimze) {
-			this.setState(Frame.ICONIFIED);
+		if (pressedButton == text) {
+			if (textmenu.isVisible()) {
+				textmenu.setVisible(false);
+			} else {
+				textmenu.setVisible(true);
+				gesturemenu.setVisible(false);
+			}
 			return;
 		}
+		
+		if (pressedButton == minimze) {
+			this.setState(Frame.ICONIFIED);
+		}
+		
 		if(pressedButton==exit) {
 			System.exit(0);
 		}
@@ -228,6 +252,6 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 		if((arg0.getNewState()==WindowEvent.WINDOW_CLOSED) && (isMain)) {
 			System.exit(0);
 		}
-		
+
 	}
 }
