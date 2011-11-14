@@ -60,7 +60,7 @@ public class SkinChooser {
 			mainWindow.getWindow().initMainWindow();
 			//Set Window Background
 			mainWindow.getWindow().SetBackgroundImage("src/resources/images/style01/back.png");
-			mainWindow.getWindow().setMenu(325, 164, 280, 170);
+			mainWindow.getWindow().setMenu(345, 167, 244, 160);
 		break;
 		case 2:
 			//Create Window, Set Title, Set Shape

@@ -210,8 +210,8 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 		
 		if((pressedButton==playRecord) && (audioHelper.isPlayingAudio()==false) && (isReadyToPlay)) {
 			System.out.println("Button 3 Pressed");
-			//audioHelper.playReverseAudio();
-			audioHelper.playAudio();
+			audioHelper.playReverseAudio();
+			//audioHelper.playAudio();
 			return;
 		}
 		if(pressedButton==minimze) {
