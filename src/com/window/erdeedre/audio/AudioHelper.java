@@ -36,7 +36,12 @@ public class AudioHelper {
 			line.start();
 		} catch (LineUnavailableException e) {
 			System.err.println("Line unavailable: " + e);
+			JOptionPane.showMessageDialog(new Frame(), "We are sorry but no Line In Signal is found. Software won't start without.");
 			System.exit(-2);
+		}catch(IllegalArgumentException e){
+			System.err.println("No Line found: "+ e);
+			JOptionPane.showMessageDialog(new Frame(), "We are sorry but no Line In Signal is found. Software won't start without.");
+			System.exit(-2);		}
 		}		
 	}
 
