@@ -27,6 +27,7 @@ public class AudioHelper {
 	private TargetDataLine line;
 	private byte[][] frames;
 	private int frameSize;
+	private boolean isReversed=false;
 	//Thread captureThread=null;
 
 	public AudioHelper() {
@@ -46,9 +47,23 @@ public class AudioHelper {
 			System.exit(-2);		
 		}		
 	}
+	
+	public void togglePlayAudio() {
+		if((!isPlayingAudio) && (!running)) {
+			this.playReverseAudio();
+		} else {
+			stopPlayAudio=true;
+		}
+	}
 
 	public void startCaptureAudio() {
+		isPlayingAudio=false;
+		isReversed=false;
+		stopPlayAudio=true;
 		stopCaptureAudio();	
+		if(out!=null) {
+			out.reset();
+		}
 		
 		//if(captureThread!=null) captureThread.kill();
 			
@@ -106,7 +121,7 @@ public class AudioHelper {
 				public void run() {
 					try {
 						int count;
-						while ((count = ais.read(buffer, 0, buffer.length)) != -1) {
+						while (((count = ais.read(buffer, 0, buffer.length)) != -1) && (isPlayingAudio)) {
 							if (count > 0) {
 								System.out.println(buffer.length);
 								line.write(buffer, 0, count);
@@ -163,7 +178,7 @@ public class AudioHelper {
 							}
 							if(stopPlayAudio) break;
 						}*/
-						getFramesFromAudioInputStream(ais);
+						if(!isReversed) {getFramesFromAudioInputStream(ais);}
 						for(int i=frames.length-1;i>=0;i--) {
 							line.write(frames[i], 0, frameSize);
 							if(stopPlayAudio) break;
@@ -171,6 +186,7 @@ public class AudioHelper {
 						line.drain();
 						line.close();
 						isPlayingAudio=false;
+						stopPlayAudio=false;
 					} catch (IOException e) {
 						System.err.println("I/O problems: " + e);
 						System.exit(-3);
@@ -191,6 +207,7 @@ public class AudioHelper {
 	}
 	
 	private void getFramesFromAudioInputStream(AudioInputStream stream) throws IOException {
+		isReversed=true;
         frameSize = stream.getFormat().getFrameSize();
         frames = new byte[stream.available() / frameSize][frameSize];
         int i = 0;

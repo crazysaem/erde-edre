@@ -221,10 +221,12 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 			}
 			return;
 			}
-
-		if((pressedButton==playRecord) && (audioHelper.isPlayingAudio()==false) && (isReadyToPlay)) {
+		
+		//if((pressedButton==playRecord) && (audioHelper.isPlayingAudio()==false) && (isReadyToPlay)) {
+		if(pressedButton==playRecord) {
 			System.out.println("Button 3 Pressed");
-			audioHelper.playReverseAudio();
+			audioHelper.togglePlayAudio();			
+			//audioHelper.playReverseAudio();
 			//audioHelper.playAudio();
 			return;
 		}
