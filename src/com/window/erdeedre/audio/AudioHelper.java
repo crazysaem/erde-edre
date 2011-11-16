@@ -1,5 +1,6 @@
 package com.window.erdeedre.audio;
 
+import java.awt.Frame;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.TargetDataLine;
+import javax.swing.JOptionPane;
 
 /**
  * Audio Helper Class
@@ -41,7 +43,7 @@ public class AudioHelper {
 		}catch(IllegalArgumentException e){
 			System.err.println("No Line found: "+ e);
 			JOptionPane.showMessageDialog(new Frame(), "We are sorry but no Line In Signal is found. Software won't start without.");
-			System.exit(-2);		}
+			System.exit(-2);		
 		}		
 	}
 
