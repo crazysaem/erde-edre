@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 /**
  * Helper Class for Custom Shapes
- * @author Samuel Schneider
+ * @author Team5-Listener
  *
  */
 public class CustomComponentAdapter extends ComponentAdapter {

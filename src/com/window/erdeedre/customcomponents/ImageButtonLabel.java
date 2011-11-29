@@ -17,7 +17,7 @@ import com.window.erdeedre.skins.ButtonValues;
 
 /**
  * This Function simulates a Button through an Icon placed on a Label
- * @author Samuel Schneider
+ * @author Team5-Listener
  *
  */
 public class ImageButtonLabel implements MouseListener, MouseMotionListener {

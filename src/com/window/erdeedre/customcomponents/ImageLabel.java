@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 
 /**
  * Helper Class to place an Image on a Frame/Panel
- * @author Samuel Schneider
+ * @author Team5-Listener
  *
  */
 public class ImageLabel {

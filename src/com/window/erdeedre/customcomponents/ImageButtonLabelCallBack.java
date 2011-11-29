@@ -2,7 +2,7 @@ package com.window.erdeedre.customcomponents;
 
 /**
  * Call Back for a Button-Click Event
- * @author Samuel Schneider
+ * @author Team5-Listener
  *
  */
 public interface ImageButtonLabelCallBack {

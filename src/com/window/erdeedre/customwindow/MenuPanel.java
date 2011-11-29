@@ -1,18 +1,15 @@
 package com.window.erdeedre.customwindow;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import java.awt.TextArea;
 import javax.swing.JLabel;
 
+@SuppressWarnings("serial")
 public class MenuPanel extends JPanel {
 	
 
@@ -42,6 +39,7 @@ public class MenuPanel extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					try {
+						@SuppressWarnings("unused")
 						Process proc = Runtime
 								.getRuntime()
 								.exec(vlc_path+" src\\resources\\lifecam\\hallotschau.wmv "+vid_commands);
@@ -58,6 +56,7 @@ public class MenuPanel extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					try {
+						@SuppressWarnings("unused")
 						Process proc = Runtime
 								.getRuntime()
 								.exec(vlc_path+" src\\resources\\lifecam\\hallotschau.wmv "+vid_commands);
@@ -74,6 +73,7 @@ public class MenuPanel extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					try {
+						@SuppressWarnings("unused")
 						Process proc = Runtime
 								.getRuntime()
 								.exec(vlc_path+" src\\resources\\lifecam\\ablehnung.wmv "+vid_commands);
@@ -90,6 +90,7 @@ public class MenuPanel extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					try {
+						@SuppressWarnings("unused")
 						Process proc = Runtime
 								.getRuntime()
 								.exec(vlc_path+" src\\resources\\lifecam\\zustimmung.wmv "+vid_commands);
@@ -106,6 +107,7 @@ public class MenuPanel extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					try {
+						@SuppressWarnings("unused")
 						Process proc = Runtime
 								.getRuntime()
 								.exec(vlc_path+" src\\resources\\lifecam\\jubel.wmv "+vid_commands);
@@ -122,6 +124,7 @@ public class MenuPanel extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					try {
+						@SuppressWarnings("unused")
 						Process proc = Runtime
 								.getRuntime()
 								.exec(vlc_path+" src\\resources\\lifecam\\fu.wmv "+vid_commands);
@@ -137,6 +140,7 @@ public class MenuPanel extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					try {
+						@SuppressWarnings("unused")
 						Process proc = Runtime
 								.getRuntime()
 								.exec(vlc_path+" src\\resources\\lifecam\\betteln.wmv "+vid_commands);
@@ -153,6 +157,7 @@ public class MenuPanel extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					try {
+						@SuppressWarnings("unused")
 						Process proc = Runtime
 								.getRuntime()
 								.exec(vlc_path+" src\\resources\\lifecam\\high_five.wmv "+vid_commands);

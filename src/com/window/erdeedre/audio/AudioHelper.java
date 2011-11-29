@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Audio Helper Class
- * @author (C) Oracle/SUN; modified by Sebastian B�hm, Samuel Schneider
+ * @author (C) Oracle/SUN; modified by Team5-Listener
  *
  */
 public class AudioHelper {
@@ -28,7 +28,6 @@ public class AudioHelper {
 	private byte[][] frames;
 	private int frameSize;
 	private boolean isReversed=false;
-	//Thread captureThread=null;
 
 	public AudioHelper() {
 		format = getFormat();
@@ -64,8 +63,7 @@ public class AudioHelper {
 		if(out!=null) {
 			out.reset();
 		}
-		
-		//if(captureThread!=null) captureThread.kill();
+
 			
 		Runnable runner = new Runnable() {
 			int bufferSize = (int)format.getSampleRate() * format.getFrameSize();
@@ -82,16 +80,13 @@ public class AudioHelper {
 						}
 					}
 					out.close();
-					//line.drain();
-					//line.close();
+
 					} catch (IOException e) {
 					System.err.println("I/O problems: " + e);
 					System.exit(-1);
 				}
 			}
 		};
-		//new
-		//captureThread = new Thread(runner);
 		Thread captureThread = new Thread(runner);
 		captureThread.start();		
 	}
@@ -163,21 +158,9 @@ public class AudioHelper {
 			line.start();
 
 			Runnable runner = new Runnable() {
-				//int bufferSize = (int) format.getSampleRate() * format.getFrameSize();
-				//byte buffer[] = new byte[bufferSize];
 	 
 				public void run() {
 					try {
-						//int count;
-						/*
-						while ((count = ais.read(buffer, 0, buffer.length)) != -1) {
-							if (count > 0) {
-								buffer=reverseBuffer(buffer);
-								System.out.println(buffer.length);
-								line.write(buffer, 0, count);
-							}
-							if(stopPlayAudio) break;
-						}*/
 						if(!isReversed) {getFramesFromAudioInputStream(ais);}
 						for(int i=frames.length-1;i>=0;i--) {
 							line.write(frames[i], 0, frameSize);
@@ -221,42 +204,11 @@ public class AudioHelper {
             }
             frames[i] = frame;
         }
-        //System.out.println("FrameSize = " + frameSize);
-        //System.out.println("Number frames = " + frames.length);
-        //System.out.println("Number frames read = " + i);
     }
 	
 	public void stopPlayAudio() {
 		stopPlayAudio = false;
 	}
-
-	private byte[] reverseBuffer(final byte buffer[]) {
-		byte outBuffer[] = new byte[buffer.length];
-		
-		for(int i=0;i<buffer.length;i++) {
-			outBuffer[i] = buffer[buffer.length-i-1];
-		}
-		
-		return outBuffer;
-	}
-	
-	/*
-	public void reverseAudio() {
-		byte audio_old[] = out.toByteArray();
-		byte audio_new[] = out.toByteArray();
-		
-		for(int i=0;i<audio_old.length;i++) {
-			audio_new[i] = audio_old[audio_old.length-i-1];
-		}
-		
-		out = new ByteArrayOutputStream();
-		try {
-			out.write(audio_new);
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}*/
 	
 	/**
 	 * 

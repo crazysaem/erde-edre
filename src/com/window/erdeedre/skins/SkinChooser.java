@@ -1,7 +1,6 @@
 package com.window.erdeedre.skins;
 
 import com.window.erdeedre.customwindow.WindowRunnable;
-import com.window.erdeedre.customwindow.MenuPanel;
 
 public class SkinChooser {
 	

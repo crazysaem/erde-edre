@@ -23,13 +23,13 @@ import com.window.erdeedre.skins.SkinChooser;
 /**
  * Custom Window extends JFrame
  * Extends JFrame to better support custom shape and pixel transparency
- * @author Samuel Schneider
+ * @author Team5-Listener
  *
  */
 public class CustomWindow extends JFrame implements MouseMotionListener, MouseListener, ImageButtonLabelCallBack, WindowStateListener {
 	private static final long serialVersionUID = 1L;
 	private CustomComponentAdapter customComponentAdapter;
-	private boolean mousedown=false, recording=false, isReadyToPlay=false, isMain=false;
+	private boolean mousedown=false, recording=false, isMain=false;
 	private int mousex1, mousey1;
 	private ImageButtonLabel startStopRecord, playRecord, skin, gestures, minimze, exit,text;
 	private ButtonValues startStopRecordValues, playRecordValues, skinValues, gesturesValues, minimizeValues, exitValues, textValues;
@@ -196,7 +196,6 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 			//System.out.println("Button 2 Pressed");	
 			audioHelper.stopCaptureAudio();
 			recording=false;
-			isReadyToPlay=true;
 			return;
 		}
 		if(pressedButton==skin){

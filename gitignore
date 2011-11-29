@@ -1,0 +1,13 @@
+#Copy And Paste the entire content of this file into the following file: /.git/info/exclude
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+#Folders
+/bin
+/.settings
+
+.fatjar

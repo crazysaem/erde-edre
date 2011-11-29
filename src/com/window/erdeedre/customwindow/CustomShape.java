@@ -11,7 +11,7 @@ import java.io.IOException;
  * CustomShape
  * based on a Class from Andrew Thompson * 
  * Source: http://stackoverflow.com/questions/7052422/image-graphic-into-a-shape-in-java/7059497#7059497
- * @author Samuel Schneider, Andrew Thompson
+ * @author Andrew Thompson, modified by Team5-Listener
  * 
  *
  */
