@@ -1,2 +1,18 @@
-License: http://creativecommons.org/licenses/by-nc-nd/3.0/
-(C) Team5
+Team5-Listener
+ Tobias König, Sebastian Böhm, Magnus Brühl, Marvin Melchiors und Samuel Schneider
+  
+ BSD-License:
+ http://www.opensource.org/licenses/bsd-license.php
+ 
+ Github:	https://github.com/crazysaem/erde-edre
+ 
+ Für Software Engineering, Prof. Dr. Eckhard Kruse. Semester 03, DHBW Mannheim.
+ 
+ To compile: 
+ 1) add this Project to Eclipse
+ 2) Add JDK7 (7!) to the build path
+ 3) compile
+ 
+ /**********
+ 
+ If you are pushing to github, please take a look at "gitignore" to only upload mandatory files
