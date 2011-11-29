@@ -9,6 +9,11 @@ import javax.swing.JPanel;
 import java.awt.TextArea;
 import javax.swing.JLabel;
 
+/**
+ * WindowRunnable wraps the CustomWindow and Inits various things
+ * @author Team5-Listener
+ *
+ */
 @SuppressWarnings("serial")
 public class MenuPanel extends JPanel {
 	
@@ -30,7 +35,8 @@ public class MenuPanel extends JPanel {
 		
 		switch (mode) {
 		case 0:
-			final String vlc_path="C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe";
+			//final String vlc_path="C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe";
+			final String vlc_path="VLC\\vlc.exe";
 			final String vid_commands="--play-and-exit --fullscreen";
 			
 			btnhallo = new JButton("Tsch\u00FCss");

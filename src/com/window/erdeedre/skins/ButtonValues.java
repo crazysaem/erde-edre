@@ -1,5 +1,10 @@
 package com.window.erdeedre.skins;
 
+/**
+ * WindowRunnable wraps the CustomWindow and Inits various things
+ * @author Team5-Listener
+ *
+ */
 public class ButtonValues {
 	public String path,pathmo, pathoc;
 	public int x,y;

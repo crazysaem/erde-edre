@@ -1,5 +1,10 @@
 package com.window.erdeedre.skins;
 
+/**
+ * WindowRunnable wraps the CustomWindow and Inits various things
+ * @author Team5-Listener
+ *
+ */
 import com.window.erdeedre.customwindow.WindowRunnable;
 
 public class SkinChooser {

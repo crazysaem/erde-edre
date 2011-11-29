@@ -198,6 +198,14 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 			recording=false;
 			return;
 		}
+		//if((pressedButton==playRecord) && (audioHelper.isPlayingAudio()==false) && (isReadyToPlay)) {
+		if(pressedButton==playRecord) {
+			System.out.println("Button 3 Pressed");
+			audioHelper.togglePlayAudio();			
+			//audioHelper.playReverseAudio();
+			//audioHelper.playAudio();
+			return;
+		}
 		if(pressedButton==skin){
 			System.out.println("Skin Change Pressed");
 			//release old Screen and Audio ressources
@@ -206,8 +214,7 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 			//init new Skin
 			new SkinChooser();
 			return;
-			}
-
+		}
 		if(pressedButton==gestures){
 			System.out.println("GestureButton Pressed");
 			//release old Screen and Audio ressources
@@ -220,15 +227,6 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 			}
 			return;
 			}
-		
-		//if((pressedButton==playRecord) && (audioHelper.isPlayingAudio()==false) && (isReadyToPlay)) {
-		if(pressedButton==playRecord) {
-			System.out.println("Button 3 Pressed");
-			audioHelper.togglePlayAudio();			
-			//audioHelper.playReverseAudio();
-			//audioHelper.playAudio();
-			return;
-		}
 		if (pressedButton == text) {
 			if (textmenu.isVisible()) {
 				textmenu.setVisible(false);

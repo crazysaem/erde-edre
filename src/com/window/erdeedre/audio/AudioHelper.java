@@ -28,6 +28,7 @@ public class AudioHelper {
 	private byte[][] frames;
 	private int frameSize;
 	private boolean isReversed=false;
+	private static boolean linefail=false;
 
 	public AudioHelper() {
 		format = getFormat();
@@ -38,12 +39,18 @@ public class AudioHelper {
 			line.start();
 		} catch (LineUnavailableException e) {
 			System.err.println("Line unavailable: " + e);
-			JOptionPane.showMessageDialog(new Frame(), "We are sorry but no Line In Signal is found. Software won't start without.");
-			System.exit(-2);
+			if(!linefail) {
+				JOptionPane.showMessageDialog(new Frame(), "We are sorry but no Line In Signal is found. Speech Output is now not supoorted.");
+			}
+			linefail=true;
+			//System.exit(-2);
 		}catch(IllegalArgumentException e){
 			System.err.println("No Line found: "+ e);
-			JOptionPane.showMessageDialog(new Frame(), "We are sorry but no Line In Signal is found. Software won't start without.");
-			System.exit(-2);		
+			if(!linefail) {
+				JOptionPane.showMessageDialog(new Frame(), "We are sorry but no Line In Signal is found. Speech Output is now not supoorted.");
+			}
+			linefail=true;
+			//System.exit(-2);		
 		}		
 	}
 	
@@ -95,7 +102,9 @@ public class AudioHelper {
 		running = false;
 	}
 	public void releaseAudio(){
-		line.close();
+		if(!linefail) {
+			line.close();
+		}
 	}
 	public void playAudio(float speed) {
 		isPlayingAudio=true;
