@@ -27,6 +27,7 @@ public class ImageButtonLabel implements MouseListener, MouseMotionListener {
 	private int x, y;
 	private boolean mouseDown=false;
 	private CustomWindow parent=null;
+	private boolean inPressEffect=false, inPressed=false, first=false, reset=false;
 	
 	public ImageButtonLabel(CustomWindow parent, ButtonValues values) {
 		this(parent, values.path, values.pathmo, values.pathoc, values.x, values.y);
@@ -60,6 +61,10 @@ public class ImageButtonLabel implements MouseListener, MouseMotionListener {
 		label.addMouseListener(this);
         label.addMouseMotionListener(this);   
         this.parent = parent;
+	}
+	
+	public void ActivateInPressEfect() {
+		inPressEffect=true;
 	}
 	
 	public void setPos(int x, int y) {
@@ -118,7 +123,7 @@ public class ImageButtonLabel implements MouseListener, MouseMotionListener {
 	public void mouseMoved(MouseEvent e) {
 		if(!mouseDown) {
 			if(!transparencyCheck(image, e.getX(), e.getY())) return;
-			label.setIcon(iconOver);	
+			if(!inPressed) {label.setIcon(iconOver);}
 		}
 	}
 
@@ -130,7 +135,7 @@ public class ImageButtonLabel implements MouseListener, MouseMotionListener {
 		if(!transparencyCheck(image, e.getX(), e.getY())) {
 			return;
 		}
-		if(!mouseDown) label.setIcon(iconOver);	else label.setIcon(iconPressed);
+		if(!inPressed) {if(!mouseDown) label.setIcon(iconOver);	else label.setIcon(iconPressed);}
 	}
 
 	@Override
@@ -138,7 +143,7 @@ public class ImageButtonLabel implements MouseListener, MouseMotionListener {
 		if(transparencyCheck(image, e.getX(), e.getY())) {
 			return;
 		}
-		label.setIcon(icon);		
+		if(!inPressed) {label.setIcon(icon);}		
 	}
 
 	@Override
@@ -148,8 +153,9 @@ public class ImageButtonLabel implements MouseListener, MouseMotionListener {
 			parent.mousePressed(e);
 			return;
 		}
-		label.setIcon(iconPressed);	
-		
+		if(!inPressed) {label.setIcon(iconPressed);}	
+		if((inPressEffect) && (!reset)) {label.setIcon(iconOver);inPressed=true;first=true;}
+		reset=false;
 	}
 
 	@Override
@@ -159,7 +165,8 @@ public class ImageButtonLabel implements MouseListener, MouseMotionListener {
 			return;
 		}
 		label.setIcon(iconOver);	
-		
+		if((inPressEffect) && (!first)) {inPressed=false;} else {reset=true;}
 		parent.ButtonCallBack(this);
+		first=false;
 	}	
 }

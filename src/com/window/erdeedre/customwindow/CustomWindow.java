@@ -12,6 +12,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import com.window.erdeedre.audio.AudioHelper;
 import com.window.erdeedre.customcomponents.ImageButtonLabel;
@@ -35,6 +36,7 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 	private ButtonValues startStopRecordValues, playRecordValues, skinValues, gesturesValues, minimizeValues, exitValues, textValues;
 	private ImageLabel background;
 	private AudioHelper audioHelper;	
+	private boolean isReadyToPlay=false;
 
 	MenuPanel gesturemenu;
 	MenuPanel textmenu;
@@ -104,6 +106,7 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		startStopRecord = new ImageButtonLabel(this, startStopRecordValues);
+		startStopRecord.ActivateInPressEfect();
 		this.add(startStopRecord.getLabel());
 
 		playRecord = new ImageButtonLabel(this, playRecordValues);
@@ -196,14 +199,16 @@ public class CustomWindow extends JFrame implements MouseMotionListener, MouseLi
 			//System.out.println("Button 2 Pressed");	
 			audioHelper.stopCaptureAudio();
 			recording=false;
+			isReadyToPlay=true;
 			return;
 		}
-		//if((pressedButton==playRecord) && (audioHelper.isPlayingAudio()==false) && (isReadyToPlay)) {
-		if(pressedButton==playRecord) {
-			System.out.println("Button 3 Pressed");
-			audioHelper.togglePlayAudio();			
-			//audioHelper.playReverseAudio();
-			//audioHelper.playAudio();
+		if((pressedButton==playRecord) && (audioHelper.isPlayingAudio()==false)) {
+			if(isReadyToPlay) {
+				System.out.println("Button 3 Pressed");
+				audioHelper.togglePlayAudio();			
+			} else {
+				JOptionPane.showMessageDialog(new Frame(), "You need to record a sentence before you can translate it.");
+			}
 			return;
 		}
 		if(pressedButton==skin){

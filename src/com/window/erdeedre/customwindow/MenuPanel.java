@@ -1,10 +1,12 @@
 package com.window.erdeedre.customwindow;
 
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.TextArea;
 import javax.swing.JLabel;
@@ -195,12 +197,21 @@ public class MenuPanel extends JPanel {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					textArea.setText(invert(textArea.getText()));
+					if(textArea.getText().length()==0) {
+						JOptionPane.showMessageDialog(new Frame(), "Please enter a sentence in your language and press this button again. Your sentence will then be translated.");
+					}
 				}
 			});
 			btnToText.setBounds(20, 106, 89, 23);
 			add(btnToText);
 			
 			JButton btnToSpeech = new JButton("to Speech");
+			btnToSpeech.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					JOptionPane.showMessageDialog(new Frame(), "Text to Speech will be supported in later versions.");
+				}
+			});
 			btnToSpeech.setBounds(129, 106, 89, 23);
 			add(btnToSpeech);
 			break;
